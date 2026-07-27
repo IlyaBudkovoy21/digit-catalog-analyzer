@@ -1,0 +1,33 @@
+[project]
+name = "digit-catalog-analyzer"
+version = "0.1.0"
+description = "FastAPI service that downloads a remote text-file catalog and calculates digit statistics."
+requires-python = ">=3.12"
+dependencies = [
+    "celery>=5.4,<6",
+    "fastapi>=0.115,<1",
+    "httpx>=0.27,<1",
+    "jinja2>=3.1,<4",
+    "psycopg[binary]>=3.2,<4",
+    "pydantic-settings>=2.4,<3",
+    "python-multipart>=0.0.9,<1",
+    "redis>=5.0,<6",
+    "sqlalchemy>=2.0,<3",
+    "uvicorn[standard]>=0.30,<1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3,<9",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[build-system]
+requires = ["setuptools>=70", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]

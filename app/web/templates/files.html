@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="page-title">
+    <div>
+        <p class="eyebrow">Скачанные документы</p>
+        <h1>Файлы и расчеты по цифрам</h1>
+    </div>
+    <button id="calculateButton" class="primary" type="button">Произвести расчеты</button>
+</section>
+
+<section class="card toolbar">
+    <label class="inline"><input id="selectPage" type="checkbox"> Выбрать все на странице</label>
+    <label class="inline"><input id="selectAll" type="checkbox"> Выбрать вообще все файлы</label>
+    <label>
+        <span>Сортировка</span>
+        <select id="orderSelect">
+            <option value="desc">Сначала новые</option>
+            <option value="asc">Сначала старые</option>
+        </select>
+    </label>
+    <span id="selectionInfo" class="muted">Выбрано: 0</span>
+</section>
+
+<section class="card table-card">
+    <table>
+        <thead>
+        <tr>
+            <th></th>
+            <th>Имя файла</th>
+            <th>Время скачивания</th>
+            <th>Размер</th>
+            <th>SHA-256</th>
+        </tr>
+        </thead>
+        <tbody id="filesBody"></tbody>
+    </table>
+    <div class="pagination">
+        <button id="prevPage" type="button">Назад</button>
+        <span id="pageInfo">1 / 1</span>
+        <button id="nextPage" type="button">Вперед</button>
+    </div>
+</section>
+
+<section id="resultSection" class="card hidden">
+    <div class="status-header">
+        <div>
+            <p class="eyebrow">Результаты</p>
+            <h2 id="resultTitle">Статистика</h2>
+        </div>
+    </div>
+    <h3>Общая статистика</h3>
+    <div id="totalStats" class="digit-grid"></div>
+    <h3>По файлам</h3>
+    <div id="fileStats"></div>
+</section>
+
+<script src="/static/files.js"></script>
+{% endblock %}

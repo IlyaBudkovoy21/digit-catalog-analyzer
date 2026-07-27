@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+    <div>
+        <p class="eyebrow">Фоновая загрузка каталога</p>
+        <h1>Скачать все данные из ограниченного API</h1>
+        <p class="lead">Worker сам получает пачки имен, скачивает ZIP по 3 файла, сохраняет результат и пережидает лимиты по Retry-After.</p>
+    </div>
+</section>
+
+<section class="card grid two-cols">
+    <label>
+        <span>External API base URL</span>
+        <input id="apiBaseUrl" type="url" placeholder="https://example.com" value="{{ external_api_base_url }}">
+    </label>
+    <label>
+        <span>X-Candidate-Id</span>
+        <input id="candidateId" type="text" placeholder="optional stable id" value="{{ candidate_id }}">
+    </label>
+    <button id="startButton" class="primary" type="button">Скачать данные</button>
+    <a class="secondary" href="/files">Перейти к файлам</a>
+</section>
+
+<section class="card status-card">
+    <div class="status-header">
+        <div>
+            <p class="eyebrow">Статус процесса</p>
+            <h2 id="statusText">Загрузка еще не запускалась</h2>
+        </div>
+        <span id="statusBadge" class="badge">idle</span>
+    </div>
+    <div class="metrics">
+        <div>
+            <span>Старт по НСК</span>
+            <strong id="startedAtNsk">-</strong>
+        </div>
+        <div>
+            <span>Получено названий</span>
+            <strong id="namesReceived">0</strong>
+        </div>
+        <div>
+            <span>Скачано файлов</span>
+            <strong id="filesDownloaded">0</strong>
+        </div>
+    </div>
+    <div class="progress">
+        <div id="progressBar"></div>
+    </div>
+    <p id="message" class="muted">Нажмите кнопку, чтобы поставить задачу в Celery.</p>
+</section>
+
+<script src="/static/download.js"></script>
+{% endblock %}
