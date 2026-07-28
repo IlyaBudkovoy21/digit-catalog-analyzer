@@ -17,7 +17,7 @@ services:
       redis:
         condition: service_started
       rabbitmq:
-        condition: service_healthy
+        condition: service_started
     expose:
       - "8000"
     restart: unless-stopped
@@ -41,7 +41,7 @@ services:
       redis:
         condition: service_started
       rabbitmq:
-        condition: service_healthy
+        condition: service_started
     restart: unless-stopped
 
   nginx:
@@ -84,7 +84,8 @@ services:
       test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
       interval: 5s
       timeout: 5s
-      retries: 10
+      retries: 30
+      start_period: 60s
     restart: unless-stopped
 
 volumes:
