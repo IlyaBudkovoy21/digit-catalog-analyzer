@@ -48,9 +48,9 @@ def health() -> dict[str, str]:
 def download_page(request: Request) -> HTMLResponse:
     settings = get_settings()
     return templates.TemplateResponse(
+        request,
         "download.html",
         {
-            "request": request,
             "external_api_base_url": settings.external_api_base_url,
             "candidate_id": settings.candidate_id,
         },
@@ -59,7 +59,7 @@ def download_page(request: Request) -> HTMLResponse:
 
 @app.get("/files", response_class=HTMLResponse)
 def files_page(request: Request) -> HTMLResponse:
-    return templates.TemplateResponse("files.html", {"request": request})
+    return templates.TemplateResponse(request, "files.html")
 
 
 @app.post("/api/download/start")
